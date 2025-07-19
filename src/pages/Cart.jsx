@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { pizzaCart } from '../assets/pizzas'
 
+
 const Cart = () => {
     const [cart, setCart] = useState(pizzaCart);
 
@@ -24,7 +25,7 @@ const Cart = () => {
         
 
   return (
-    <div className='form-container'>
+    <div className='cart-container'>
         <h2>Carrito de Compras</h2>
         {cart.length === 0 ?(
             <p>No hay  pizzas en el carrito.</p>
@@ -38,12 +39,20 @@ const Cart = () => {
                             <p>Precio: ${pizza.price.toLocaleString()}</p>
                             <p>Cantidad: {pizza.count}</p>
                             <p>Subtotal: $ {(pizza.price*pizza.count).toLocaleString()}</p>
+                            
+                            <div className='cart-buttons'>
+
                             <button onClick={() => increase(pizza.id)}>+</button>
                             <button onClick={() => decrease(pizza.id)}>-</button>
+                            </div>
+                        
                         </div>
                     </div>
                 ))}
-                <h3>Total: ${total.toLocaleString()}</h3>
+                
+
+                <h3 className="cart-total">Total: ${total.toLocaleString()}</h3>
+               
                 <button className='pay-btn'>Pagar</button>
             </div>
         )}

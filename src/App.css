@@ -45,6 +45,7 @@ body {
   color: #ffd166; /* Amarillo pálido */
 }
 
+
 /* === Botón del carrito === */
 .navbar-cart {
   background-color: #f77f00;
@@ -151,6 +152,7 @@ body {
   background-color: #ccc;
   margin-top: 2rem;
 }
+
 /* Contenedor principal para todas las páginas */
 .form-container {
 max-width: 960px;
