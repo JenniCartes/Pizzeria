@@ -1,6 +1,11 @@
-const CardPizza = ({ name, price, ingredients, img }) => {
- 
-    return (
+import { useCart } from "../context/CartContext";
+
+const CardPizza = ({pizza}) => {
+  const { addToCart } = useCart();
+  const { name, price, ingredients, img } = pizza;
+  
+  
+  return (
     <div className="card">
       <img src={img} alt={name} />
       <h3>{name}</h3>
@@ -11,10 +16,11 @@ const CardPizza = ({ name, price, ingredients, img }) => {
       <p><strong>Precio:</strong> ${price.toLocaleString()}</p>
       <div className="card-buttons">
         <button>Ver más</button>
-        <button>Añadir</button>
+        <button onClick={() => addToCart(pizza)}>Añadir</button>
       </div>
     </div>
   );
-};
+}
+
 
 export default CardPizza;

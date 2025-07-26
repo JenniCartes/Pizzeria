@@ -1,32 +1,16 @@
-import React, { useState } from 'react'
-import { pizzaCart } from '../assets/pizzas'
+
+import { useCart } from '../context/CartContext';
 
 
 const Cart = () => {
-    const [cart, setCart] = useState(pizzaCart);
+    const {cart, increase, decrease, total } = useCart();
 
-    const increase = (id) => {
-        setCart(prev =>
-            prev.map(item => 
-                item.id === id ? { ...item, count: item.count + 1} : item
-            )
-        )
-    }
-
-     const decrease = (id) => {
-        setCart(prev => 
-            prev
-            .map(item => item.id ===id ? {...item, count: item.count -1 } : item    
-            )
-            . filter (item => item.count > 0) )
-     }
-     
-     const total = cart.reduce((sum, item) => sum + item.price * item.count, 0)
         
 
   return (
     <div className='cart-container'>
         <h2>Carrito de Compras</h2>
+
         {cart.length === 0 ?(
             <p>No hay  pizzas en el carrito.</p>
         ):(

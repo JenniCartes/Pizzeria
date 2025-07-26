@@ -9,11 +9,15 @@ import Register from './pages/Register'
 import { Route, Routes } from 'react-router-dom'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
+import { CartProvider } from './context/CartContext'
+import { PizzaProvider } from './context/PizzaContext'
 
 function App() {
   
   return (
-    <>
+    <PizzaProvider>
+
+    <CartProvider>
     <Navbar/>
     {/*RENDERIZAR*/}
     <Routes>
@@ -25,14 +29,10 @@ function App() {
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/404' element={<NotFound/>}/>
 
-    </Routes>
-    
-    
-    
-    
-    
+    </Routes>    
     <Footer/>
-      </>
+      </CartProvider>
+    </PizzaProvider>
       )
 }
 
