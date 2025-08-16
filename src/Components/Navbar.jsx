@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
     const {total} = useCart();
-    const token = false;
+    const { token, logout } = useUser()
 
   return (
     <>
@@ -15,7 +16,7 @@ const Navbar = () => {
         {token ? (
             <>
             <Link to="/profile">🔓 Profile</Link>
-            <button>🔒Logout</button>
+            <button onClick={logout}>🔒Logout</button>
             </>
         ):(
             <>
@@ -23,7 +24,9 @@ const Navbar = () => {
             <Link to="/register">🔐 Register</Link>
             </>
         )}
-         <Link to="/cart"> <button className="navbar-cart">🛒 Total: ${total.toLocaleString()}</button>
+         <Link to="/cart"> 
+         <button className="navbar-cart">
+          🛒 Total: ${total.toLocaleString()}</button>
          
          
          </Link>

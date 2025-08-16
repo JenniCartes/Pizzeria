@@ -6,7 +6,6 @@ import { usePizzas } from "../context/PizzaContext";
 const Home = () => {
   const { pizzas, loading } = usePizzas();
   
-  
   if (loading) return <p>Cargando pizzas...</p>
   
 

@@ -11,28 +11,51 @@ import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 import { CartProvider } from './context/CartContext'
 import { PizzaProvider } from './context/PizzaContext'
+import { UserProvider } from './context/UserContext'
+import ProtectedRoute from './Components/ProtectedRoute'
 
 function App() {
   
   return (
-    <PizzaProvider>
+
+    <UserProvider>
 
     <CartProvider>
+      <PizzaProvider>
+
     <Navbar/>
     {/*RENDERIZAR*/}
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/register' element={<Register/>}/>
-      <Route path='/login' element={<Login/>}/>
+      {/* Evitar login/register si ya está logueado */}
+      <Route path='/login' element={ <ProtectedRoute requiereAuth={false}>
+       <Login/>
+      </ProtectedRoute>
+}
+/>
+      <Route path='/register' element={
+        <ProtectedRoute requiereAuth={false}>
+          <Register/>
+          </ProtectedRoute>
+          }/>
+
       <Route path='/cart' element={<Cart/>}/>
-      <Route path='/pizza/p001' element={<Pizza/>}/>
-      <Route path='/profile' element={<Profile/>}/>
+      <Route path='/pizza/:id' element={<Pizza/>}/>
+      
+
+      {/*Proteger profile*/}
+      <Route path='/profile' element={<ProtectedRoute requiereAuth={true}>
+        <Profile/>
+        </ProtectedRoute>
+    }/>
+
       <Route path='/404' element={<NotFound/>}/>
 
     </Routes>    
     <Footer/>
+      </PizzaProvider>
       </CartProvider>
-    </PizzaProvider>
+    </UserProvider>
       )
 }
 
